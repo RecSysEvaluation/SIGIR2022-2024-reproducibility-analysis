@@ -1,11 +1,52 @@
 import matplotlib.pyplot as plt
+import requests
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+path = Path("Python scripts to generate figures/Statistics.csv")
+# Correct Sheet ID and GID
+sheet_id = "19yPAqB0W1EtANUX3iFP0EE7F5c3EmdLRvu9GR2M9ljs"
+gid = "1516783209"
+# CSV export URL
+url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid}"
+# Request the CSV
+response = requests.get(url)
+# Save to file if response is OK
+if response.status_code == 200 and "text/csv" in response.headers.get("Content-Type", ""):
+    with open(path, "wb") as f:
+        f.write(response.content)
+    print("Statistics downloaded for the collected papers and saved as 'Statistics.csv'")
+else:
+    print("Fail to download the statistics of the collected papers. Here's the response:")
+    print(response.text[:500])
+
+
+
+# read data
+data = pd.read_csv(path)
+data = data.iloc[:45, :]
+data = data.iloc[2:, :]
+col_to_drop = [0, 2]
+data = data.drop(data.columns[[0, 2]], axis = 1)
+data = data.T
+data.columns = data.iloc[0]
+data = data[1:].reset_index(drop=True)
+
+temp = ["Pairwise t-test", "Two-sided t-test", "10-trial t-test", "One sample t-test", "T-test", "Student's t-test"]
+
+only_p_value_given = len( [i for i in data["Name of statistical testing"] if i == "Only p-value is given" ]  )
+t_test = len( [i for i in data["Name of statistical testing"] if i in temp ]  )
+no_analysis = len( [i for i in data["Name of statistical testing"] if i not in temp and i != "Only p-value is given" ] )
+
+
 plt.rcParams['font.family'] = 'Arial'
 plt.rcParams.update({
     'font.size': 12          # Default text size
 })
 # Data
-categories = ["No statistical analysis", "Only p-value given", "Some t-test mentioned and p-value given"]
-values = [42, 14, 9]
+categories = ["No statistical analysis", "Some t-test mentioned and p-value given", "Only p-value given", ]
+values = [no_analysis, t_test, only_p_value_given ]
 
 # Plot
 colors = ['crimson', 'crimson', 'crimson']
@@ -29,7 +70,7 @@ ax.set_xlim(0, max_val + 10)
 ax.set_xticks(range(0, max_val + 10, 10))  # start=0, end=max+15, step=5
 
 
-
+path = Path("Python scripts to generate figures/fig-statistical-tests.pdf")
 plt.tight_layout()
-plt.savefig("fig-statistical-tests.pdf")
+plt.savefig(path)
 plt.show()
