@@ -21,8 +21,6 @@ else:
     print("Fail to download the statistics of the collected papers. Here's the response:")
     print(response.text[:500])
 
-
-
 # read data
 data = pd.read_csv(path)
 data = data.iloc[:45, :]
