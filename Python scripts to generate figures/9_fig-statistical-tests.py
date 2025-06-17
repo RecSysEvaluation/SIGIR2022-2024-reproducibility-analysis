@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import requests
 from pathlib import Path
 import pandas as pd
-import numpy as np
 
 path = Path("Python scripts to generate figures/Statistics.csv")
 # Correct Sheet ID and GID
