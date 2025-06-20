@@ -3,7 +3,7 @@ import requests
 from pathlib import Path
 import pandas as pd
 
-path = Path("Python scripts to generate figures/Statistics.csv")
+path = Path("Python scripts used to create figures/Statistics.csv")
 # Correct Sheet ID and GID
 sheet_id = "19yPAqB0W1EtANUX3iFP0EE7F5c3EmdLRvu9GR2M9ljs"
 gid = "1516783209"
@@ -70,7 +70,7 @@ for bar in bars:
 ax.set_xlim(0, max(sorted_values) + 10)
 
 
-path = Path("Python scripts to generate figures/fig-code.pdf")
+path = Path("Python scripts used to create figures/fig-code.pdf")
 plt.tight_layout()
 plt.savefig(path)
 plt.show()

@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 from collections import defaultdict
 
-path = Path("Python scripts to generate figures/Statistics.csv")
+path = Path("Python scripts used to create figures/Statistics.csv")
 # Correct Sheet ID and GID
 sheet_id = "19yPAqB0W1EtANUX3iFP0EE7F5c3EmdLRvu9GR2M9ljs"
 gid = "1516783209"
@@ -115,6 +115,6 @@ ax.set_xlim(0, max(values) + 10)
 
 plt.tight_layout()
 
-path = Path("Python scripts to generate figures/fig_usedDatasets.pdf")
+path = Path("Python scripts used to create figures/fig_usedDatasets.pdf")
 plt.savefig(path)
 plt.show()

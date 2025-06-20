@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 
-path = Path("Python scripts to generate figures/Statistics.csv")
+path = Path("Python scripts used to create figures/Statistics.csv")
 # Correct Sheet ID and GID
 sheet_id = "19yPAqB0W1EtANUX3iFP0EE7F5c3EmdLRvu9GR2M9ljs"
 gid = "1516783209"
@@ -67,7 +67,7 @@ ax.set_xlim(0, max_val + 10)
 ax.set_xticks(range(0, max_val + 10, 10))  # start=0, end=max+15, step=5
 
 
-path = Path("Python scripts to generate figures/fig-baselines-fixed-embedding.pdf")
+path = Path("Python scripts used to create figures/fig-baselines-fixed-embedding.pdf")
 plt.tight_layout()
 plt.savefig(path)
 plt.show()

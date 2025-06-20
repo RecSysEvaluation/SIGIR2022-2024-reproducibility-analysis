@@ -10,7 +10,7 @@ plt.rcParams.update({
     'font.size': 12          # Default text size
 })
 
-path = Path("Python scripts to generate figures/Statistics.csv")
+path = Path("Python scripts used to create figures/Statistics.csv")
 # Correct Sheet ID and GID
 sheet_id = "19yPAqB0W1EtANUX3iFP0EE7F5c3EmdLRvu9GR2M9ljs"
 gid = "1516783209"
@@ -112,6 +112,6 @@ ax.set_xlim(0, max(baseline_values) + 15)
 plt.subplots_adjust(left=0.3)
 
 plt.tight_layout()
-path = Path("Python scripts to generate figures/choice_of_baseline_metrics.pdf")
+path = Path("Python scripts used to create figures/choice_of_baseline_metrics.pdf")
 plt.savefig(path)
 plt.show()
